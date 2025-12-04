@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AutoMail",
-  "version": "3.0",
+  "version": "5.0",
   "description": "إيميل مؤقت احترافي باستخدام خدمة Mail.tm",
   "permissions": [
     "activeTab",
@@ -18,4 +18,5 @@
     "default_popup": "popup.html",
     "default_icon": "icon.png"
   }
+
 }
