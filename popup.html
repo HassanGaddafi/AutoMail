@@ -2,50 +2,47 @@
 <html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>AutoMail</title>
+    <title>NinjaMail</title>
     <style>
-        body { width: 320px; padding: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f4; }
-        h3 { margin-top: 0; color: #333; text-align: center; }
+        body { width: 320px; padding: 15px; font-family: sans-serif; background: #f4f6f8; }
+        .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; }
         
-        .card { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 10px; }
+        #emailDisplay { font-family: monospace; color: #333; font-weight: bold; margin: 10px 0; word-break: break-all; background: #eee; padding: 8px; border-radius: 5px; border: 1px dashed #ccc;}
         
-        button { width: 100%; padding: 12px; margin-top: 8px; cursor: pointer; border: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        button { width: 100%; padding: 12px; margin-top: 8px; cursor: pointer; border: none; border-radius: 6px; font-weight: bold; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        
         #fillBtn { background: #4285f4; color: white; }
         #fillBtn:hover { background: #3367d6; }
-        
-        #checkInbox { background: #34a853; color: white; }
+
+        #checkInbox { background: #34a853; color: white; margin-top: 15px; }
         #checkInbox:hover { background: #2d8e47; }
 
-        .info { font-size: 13px; color: #555; word-break: break-all; text-align: center; font-family: monospace; background: #eee; padding: 5px; border-radius: 4px; }
+        #resetBtn { background: #d93025; color: white; margin-top: 15px; display: none; } /* مخفي افتراضياً */
         
-        #messages { list-style: none; padding: 0; margin-top: 10px; }
-        #messages li { padding: 10px; border-bottom: 1px solid #eee; background: white; margin-bottom: 5px; border-radius: 4px; font-size: 13px; }
+        ul { list-style: none; padding: 0; text-align: right; }
+        li { background: white; border-bottom: 1px solid #eee; padding: 10px; margin-top:5px; border-radius: 5px; font-size: 13px; animation: fadeIn 0.3s; }
         
-        .otp { display: block; margin-top: 5px; color: #d93025; font-weight: bold; background: #fce8e6; padding: 5px; border-radius: 4px; text-align: center; }
+        .otp { color: #d93025; font-weight: bold; display: block; margin-top: 5px; background: #ffeaea; padding: 5px; text-align: center; border-radius: 4px; border: 1px solid #ffcdd2; }
 
-        /* Toast Notification Style */
-        #toast {
-            visibility: hidden; min-width: 200px; background-color: #333; color: #fff; text-align: center;
-            border-radius: 4px; padding: 10px; position: fixed; z-index: 100; left: 50%; bottom: 30px;
-            transform: translateX(-50%); font-size: 14px; opacity: 0; transition: opacity 0.5s, bottom 0.5s;
-        }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+        #toast { visibility: hidden; min-width: 200px; background-color: #333; color: #fff; text-align: center; border-radius: 4px; padding: 10px; position: fixed; z-index: 100; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 14px; opacity: 0; transition: opacity 0.5s, bottom 0.5s; }
         #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
     </style>
 </head>
 <body>
-    <h3>📧 AutoMail</h3>
-    
     <div class="card">
-        <label style="font-size: 12px; color:#777;">الإيميل الحالي:</label>
-        <div id="emailDisplay" class="info">...</div>
-        <button id="fillBtn">إنشاء وحقن الإيميل</button>
+        <div id="statusLabel" style="font-size:12px; color:#666;">الحالة: جاهز</div>
+        <div id="emailDisplay">لا يوجد إيميل نشط</div>
+        
+        <button id="fillBtn">⚡ إنشاء وحقن ذكي</button>
+        <button id="resetBtn">🔄 إنهاء وإعادة ضبط</button>
     </div>
 
-    <button id="checkInbox">تحديث الوارد (يدوي)</button>
+    <button id="checkInbox">📥 فحص الوارد</button>
     <ul id="messages"></ul>
 
     <div id="toast">تم النسخ!</div>
-
     <script src="popup.js"></script>
 </body>
 </html>
